@@ -9,7 +9,7 @@ import { Card } from '@/components/ui/card'
 import { cn, formatRelativeTime } from '@/lib/utils'
 import { useTheme } from '@/components/providers/theme-provider'
 import { useAuth } from '@/components/providers/auth-provider'
-import { createClient } from '@/lib/supabase/client'
+import { createBrowserClient } from '@supabase/ssr'
 import type { PostWithAuthor } from '@/lib/supabase/database.types'
 
 interface PostCardProps {
@@ -24,7 +24,11 @@ export function PostCard({ post, onLike }: PostCardProps) {
   const [likesCount, setLikesCount] = useState(post.likes_count)
   const [isLiking, setIsLiking] = useState(false)
   
-  const supabase = createClient()
+  // Create untyped client until DB schema is set up
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
   
   const handleLike = async () => {
     if (!user || isLiking) return

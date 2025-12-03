@@ -8,7 +8,7 @@ import { Avatar } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { useAuth } from '@/components/providers/auth-provider'
 import { useTheme } from '@/components/providers/theme-provider'
-import { createClient } from '@/lib/supabase/client'
+import { createBrowserClient } from '@supabase/ssr'
 import { cn } from '@/lib/utils'
 
 const TAGS = ['Gaming', 'Música', 'Smoke', 'Retro', 'Arte']
@@ -21,7 +21,11 @@ export function CreatePostCard() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   
-  const supabase = createClient()
+  // Create untyped client for now until DB schema is set up
+  const supabase = createBrowserClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  )
   
   const handleTagToggle = (tag: string) => {
     setSelectedTags(prev => 
@@ -42,8 +46,8 @@ export function CreatePostCard() {
         author_id: profile.id,
         content: content.trim(),
         tags: selectedTags.length > 0 ? selectedTags : null,
-        type: 'text' as const,
-        visibility: 'club-only' as const,
+        type: 'text',
+        visibility: 'club-only',
       })
     
     if (!error) {
