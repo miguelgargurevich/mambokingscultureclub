@@ -42,8 +42,8 @@ export function CreatePostCard() {
         author_id: profile.id,
         content: content.trim(),
         tags: selectedTags.length > 0 ? selectedTags : null,
-        type: 'text',
-        visibility: 'club-only',
+        type: 'text' as const,
+        visibility: 'club-only' as const,
       })
     
     if (!error) {
