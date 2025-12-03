@@ -1,0 +1,193 @@
+# =====================================================
+# MAMBO KING CULTURE CLUB - .gitignore
+# =====================================================
+
+# =====================================================
+# DEPENDENCIES
+# =====================================================
+node_modules/
+.pnp
+.pnp.js
+.yarn/install-state.gz
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# =====================================================
+# NEXT.JS
+# =====================================================
+.next/
+out/
+build/
+.swc/
+
+# =====================================================
+# PRODUCTION / BUILD
+# =====================================================
+dist/
+*.tgz
+
+# =====================================================
+# ENVIRONMENT VARIABLES (NEVER COMMIT!)
+# =====================================================
+.env
+.env.*
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+!.env.example
+
+# =====================================================
+# TYPESCRIPT
+# =====================================================
+*.tsbuildinfo
+next-env.d.ts
+
+# =====================================================
+# TESTING
+# =====================================================
+coverage/
+.nyc_output/
+*.lcov
+jest-results/
+test-results/
+playwright-report/
+playwright/.cache/
+
+# =====================================================
+# SUPABASE
+# =====================================================
+supabase/.branches
+supabase/.temp
+supabase/.env
+.supabase/
+
+# =====================================================
+# IDE / EDITORS
+# =====================================================
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+
+# =====================================================
+# OS FILES
+# =====================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# =====================================================
+# LOGS
+# =====================================================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =====================================================
+# DEBUG
+# =====================================================
+.debug/
+*.debug
+
+# =====================================================
+# CACHE
+# =====================================================
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache
+*.cache
+.turbo/
+
+# =====================================================
+# VERCEL
+# =====================================================
+.vercel/
+
+# =====================================================
+# MISC
+# =====================================================
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+*.7z
+
+# =====================================================
+# MEDIA / LARGE FILES (if not using Git LFS)
+# =====================================================
+# Uncomment if you want to ignore large media files
+# *.mp4
+# *.mp3
+# *.wav
+# *.mov
+# *.avi
+# *.mkv
+
+# =====================================================
+# SECRETS / CREDENTIALS
+# =====================================================
+secrets/
+credentials/
+*.secret
+*_secret*
+*_credentials*
+service-account*.json
+firebase-adminsdk*.json
+
+# =====================================================
+# LOCAL DEVELOPMENT
+# =====================================================
+.local/
+local/
+*.local.js
+*.local.ts
+*.local.json
+
+# =====================================================
+# STORYBOOK
+# =====================================================
+storybook-static/
+.storybook/public/
+
+# =====================================================
+# DOCKER (if used later)
+# =====================================================
+docker-compose.override.yml
+.docker/

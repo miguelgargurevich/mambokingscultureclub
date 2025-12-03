@@ -1,0 +1,346 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Minimal Mode (Default) */
+    --background: 0 0% 5%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 98%;
+    --primary: 0 100% 55%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 15%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 64%;
+    --accent: 0 100% 55%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 100% 55%;
+    --radius: 0.5rem;
+  }
+
+  .theme-retro {
+    /* Retro 90s Mode */
+    --background: 270 100% 5%;
+    --foreground: 180 100% 95%;
+    --card: 270 50% 10%;
+    --card-foreground: 60 100% 70%;
+    --primary: 315 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 195 100% 50%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 270 30% 20%;
+    --muted-foreground: 195 50% 70%;
+    --accent: 75 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 30 100% 50%;
+    --destructive-foreground: 0 0% 0%;
+    --border: 315 100% 40%;
+    --input: 270 30% 15%;
+    --ring: 315 100% 50%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Ember Dot - El punto rojo icónico */
+  .ember-dot {
+    @apply w-2 h-2 rounded-full bg-mambo-ember;
+    animation: ember-glow 2s ease-in-out infinite;
+  }
+
+  .ember-dot-lg {
+    @apply w-3 h-3 rounded-full bg-mambo-ember;
+    animation: ember-glow 2s ease-in-out infinite;
+  }
+
+  /* Minimal Monoline Style */
+  .monoline {
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+
+  /* Retro 90s Styles */
+  .retro-text {
+    text-shadow: 
+      3px 3px 0 var(--retro-magenta, #FF00C8),
+      -1px -1px 0 var(--retro-cyan, #00C4FF);
+  }
+
+  .retro-border {
+    border: 4px solid;
+    border-image: linear-gradient(
+      45deg,
+      #FF00C8,
+      #00C4FF,
+      #8FFF00,
+      #FF7A00
+    ) 1;
+  }
+
+  .retro-glow {
+    box-shadow: 
+      0 0 10px #FF00C8,
+      0 0 20px #00C4FF,
+      0 0 30px #8FFF00;
+  }
+
+  .vhs-overlay {
+    @apply pointer-events-none fixed inset-0;
+    background: 
+      repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.15) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+    opacity: 0.3;
+  }
+
+  /* Neon Text */
+  .neon-text {
+    animation: neon-flicker 1.5s infinite alternate;
+  }
+
+  /* Card Styles */
+  .card-minimal {
+    @apply bg-card rounded-lg border border-border p-4;
+    @apply transition-all duration-200;
+  }
+
+  .card-minimal:hover {
+    @apply border-mambo-ember/50;
+  }
+
+  .card-retro {
+    @apply bg-card rounded-none p-4;
+    border: 3px solid;
+    border-image: linear-gradient(45deg, #FF00C8, #00C4FF, #8FFF00) 1;
+  }
+
+  /* Button Base */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium;
+    @apply transition-colors focus-visible:outline-none focus-visible:ring-2;
+    @apply focus-visible:ring-ring focus-visible:ring-offset-2;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-primary-foreground hover:bg-primary/90;
+    @apply px-4 py-2;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary text-secondary-foreground hover:bg-secondary/80;
+    @apply px-4 py-2;
+  }
+
+  .btn-ghost {
+    @apply btn hover:bg-accent hover:text-accent-foreground;
+    @apply px-4 py-2;
+  }
+
+  /* Input Styles */
+  .input-minimal {
+    @apply flex h-10 w-full rounded-md border border-input bg-background px-3 py-2;
+    @apply text-sm ring-offset-background;
+    @apply file:border-0 file:bg-transparent file:text-sm file:font-medium;
+    @apply placeholder:text-muted-foreground;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring;
+    @apply focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .input-retro {
+    @apply input-minimal rounded-none;
+    border: 2px solid #FF00C8;
+  }
+
+  .input-retro:focus {
+    border-color: #00C4FF;
+    box-shadow: 0 0 10px #00C4FF;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5;
+    @apply text-xs font-semibold transition-colors;
+  }
+
+  .badge-ember {
+    @apply badge bg-mambo-ember/20 text-mambo-ember border border-mambo-ember/50;
+  }
+
+  .badge-retro {
+    @apply badge bg-retro-magenta/20 text-retro-magenta;
+    border: 1px solid currentColor;
+  }
+
+  /* Avatar */
+  .avatar {
+    @apply relative flex shrink-0 overflow-hidden rounded-full;
+  }
+
+  .avatar-sm { @apply h-8 w-8; }
+  .avatar-md { @apply h-10 w-10; }
+  .avatar-lg { @apply h-16 w-16; }
+  .avatar-xl { @apply h-24 w-24; }
+
+  /* Smoke Animation Container */
+  .smoke-container {
+    @apply relative overflow-hidden;
+  }
+
+  .smoke-particle {
+    @apply absolute w-1 h-1 bg-mambo-neutral-500/50 rounded-full;
+    animation: smoke-rise 3s ease-out infinite;
+  }
+
+  /* Memphis Pattern Background (90s style) */
+  .memphis-bg {
+    background-image: 
+      radial-gradient(circle at 20% 80%, rgba(255, 0, 200, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 20%, rgba(0, 196, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 40% 40%, rgba(143, 255, 0, 0.05) 0%, transparent 30%);
+  }
+
+  /* Grid pattern for Retro mode */
+  .retro-grid-bg {
+    background-image: 
+      linear-gradient(to right, rgba(255, 0, 200, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 0, 200, 0.1) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text-minimal {
+    @apply bg-gradient-to-r from-mambo-white to-mambo-neutral-300 bg-clip-text text-transparent;
+  }
+
+  .gradient-text-retro {
+    @apply bg-gradient-to-r from-retro-magenta via-retro-cyan to-retro-lime bg-clip-text text-transparent;
+  }
+
+  /* Scrollbar styling */
+  .scrollbar-minimal::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-minimal::-webkit-scrollbar-track {
+    @apply bg-mambo-neutral-900;
+  }
+
+  .scrollbar-minimal::-webkit-scrollbar-thumb {
+    @apply bg-mambo-neutral-700 rounded-full;
+  }
+
+  .scrollbar-minimal::-webkit-scrollbar-thumb:hover {
+    @apply bg-mambo-neutral-500;
+  }
+
+  .scrollbar-retro::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  .scrollbar-retro::-webkit-scrollbar-track {
+    background: linear-gradient(#FF00C8, #00C4FF);
+  }
+
+  .scrollbar-retro::-webkit-scrollbar-thumb {
+    @apply bg-retro-lime rounded-none;
+    border: 2px solid #FF00C8;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Custom Fonts */
+@font-face {
+  font-family: 'Press Start 2P';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://fonts.gstatic.com/s/pressstart2p/v15/e3t4euO8T-267oIAQAu6jDQyK3nVivM.woff2') format('woff2');
+}
+
+/* Keyframe Animations */
+@keyframes ember-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px #FF1A1A, 0 0 10px #FF1A1A;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 15px #FF1A1A, 0 0 25px #FF1A1A;
+    opacity: 0.8;
+  }
+}
+
+@keyframes smoke-rise {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-20px) scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #FF00C8, 0 0 80px #FF00C8;
+  }
+  20%, 24%, 55% {
+    text-shadow: none;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
